@@ -14,6 +14,6 @@ int main()
 }
 
 // add points
-// add opponent AI (part 9)
+// fix opponent AI (part 9)
 // add scoreboard
 // pause game
