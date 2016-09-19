@@ -5,7 +5,6 @@
 #include "SFML/Graphics.hpp"
 
 #include "playerpaddle.h"
-#include "aipaddle.h"
 #include "gameobjectmanager.h"
 
 class Game
@@ -23,7 +22,7 @@ private:
 
     static void showMenu();
 
-    enum GameState { Uninit, Paused, ShowingMenu, Options, Scoreboard, Playing, Exiting };
+    enum GameState { Uninit, Paused, ShowingMenu, Options, Playing, Exiting };
 
     static GameState _gameState;
     static sf::RenderWindow _window;

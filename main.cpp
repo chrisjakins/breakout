@@ -4,7 +4,6 @@
 #include "playerpaddle.cpp"
 #include "visiblegameobject.cpp"
 #include "gameball.cpp"
-#include "aipaddle.cpp"
 
 int main()
 {
@@ -12,8 +11,3 @@ int main()
 
     return 0;
 }
-
-// add points
-// fix opponent AI (part 9)
-// add scoreboard
-// pause game

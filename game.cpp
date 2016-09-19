@@ -2,7 +2,6 @@
 #include "mainmenu.h"
 #include "gameobjectmanager.h"
 #include "gameball.h"
-#include "aipaddle.h"
 
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
@@ -17,14 +16,10 @@ void Game::start()
     PlayerPaddle *player1 = new PlayerPaddle();
     player1->setPosition(1150, 550);
 
-    AIPaddle * player2 = new AIPaddle();
-    player2->setPosition(50, 550);
-
     GameBall *ball = new GameBall();
     ball->setPosition((SCREEN_WIDTH/2),(SCREEN_HEIGHT/2)-15);
 
     _gameObjectManager.add("Paddle1", player1);
-    _gameObjectManager.add("Paddle2", player2);
     _gameObjectManager.add("Ball", ball);
     _gameState = Game::ShowingMenu;
 
@@ -93,10 +88,7 @@ void Game::showMenu()
             break;
         case MainMenu::Options:
             _gameState = Game::Options;
-            break;
-        case MainMenu::Scoreboard:
-            _gameState = Game::Scoreboard;
-            break;
+        break;
     }
 }
 
