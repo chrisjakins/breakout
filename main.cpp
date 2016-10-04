@@ -11,3 +11,7 @@ int main()
 
     return 0;
 }
+
+// paddle                       DONE
+// game ball interactions       DONE (other than sides of paddle)
+// brick data structure

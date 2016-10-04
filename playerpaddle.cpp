@@ -8,8 +8,6 @@ PlayerPaddle::PlayerPaddle()
 {
     load("images/paddle.png");
     assert(isLoaded());
-
-    //getSprite().setOrigin(getSprite().getLocalBounds().width / 2, getSprite().getLocalBounds().height / 2);
 }
 
 PlayerPaddle::~PlayerPaddle()
@@ -30,16 +28,16 @@ void PlayerPaddle::update(float elapsedTime)
 {
     sf::Vector2f pos = this->getPosition();
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-        if(pos.y <= 0)
+        if(pos.x <= 0)
             _velocity = 0.0f;
         else
             _velocity = -velocity;
     }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        if(pos.y >= (Game::SCREEN_HEIGHT - getSprite().getLocalBounds().height))
+        if(pos.x >= (Game::SCREEN_WIDTH - getSprite().getLocalBounds().width))
             _velocity = 0.0f;
         else
             _velocity = velocity;
@@ -47,5 +45,8 @@ void PlayerPaddle::update(float elapsedTime)
     else
         _velocity = 0.0f;
 
-    getSprite().move(0, _velocity);
+    getSprite().move(_velocity, 0);
 }
+
+
+//should be fixed

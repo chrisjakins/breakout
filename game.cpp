@@ -14,7 +14,7 @@ void Game::start()
     _window.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "pong");
 
     PlayerPaddle *player1 = new PlayerPaddle();
-    player1->setPosition(1150, 550);
+    player1->setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50);
 
     GameBall *ball = new GameBall();
     ball->setPosition((SCREEN_WIDTH/2),(SCREEN_HEIGHT/2)-15);

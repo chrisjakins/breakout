@@ -12,6 +12,7 @@ GameBall::GameBall()
     assert(isLoaded());
 
     getSprite().setOrigin(9, 9);
+    std::srand(time(0));
     float random_number = std::rand() % 360 + 1;
     _angle = random_number;
 }
@@ -32,8 +33,15 @@ void GameBall::update(float elapsedTime)
     float moveByX = linearVelocityX(_angle) * moveAmount;
     float moveByY = linearVelocityY(_angle) * moveAmount;
 
-    // top/bottom bounds collision
-    if(getPosition().y + moveByY <= 0 + getHeight() / 2 || getPosition().y + getHeight() / 2 + moveByY >= Game::SCREEN_HEIGHT)
+    // left/right bounds detection
+    if(getPosition().x + moveByX <= 0 + getWidth() / 2 || getPosition().x + getWidth() / 2 + moveByX >= Game::SCREEN_WIDTH)
+    {
+        _angle = 360.0f - _angle;
+        moveByX = -moveByX;
+    }
+
+    // top bounds detection
+    if(getPosition().y - getHeight() / 2 + moveByY <= 0)
     {
         _angle = 180.0f - _angle;
         moveByY = -moveByY;
@@ -47,19 +55,19 @@ void GameBall::update(float elapsedTime)
 
         if(p1BB.intersects(getBoundingRect()))
         {
-            _angle = 360.0f - _angle;
+            _angle = 180.0f - _angle;
 
-            moveByX = -moveByX;
+            moveByY = -moveByY;
 
-            if(getBoundingRect().width < player1->getBoundingRect().left)
-                setPosition(player1->getBoundingRect().left - getWidth() / 2 - 1, getPosition().y);
+            if(getBoundingRect().height < player1->getBoundingRect().top)
+                setPosition(getPosition().x, player1->getBoundingRect().top - getWidth() / 2 - 1);
 
             // add english
             float playerVelocity = player1->getVelocity();
             if(playerVelocity < 0)
             {
                 _angle -= 20.0f;
-                if(_angle < 90) _angle = 180.0f - _angle;
+                if(_angle < 0) _angle = 0.0f + _angle;
             }
             else if(playerVelocity > 0)
             {
@@ -68,27 +76,17 @@ void GameBall::update(float elapsedTime)
             }
 
             // so the ball constantly increases speed
-            _velocity += 35.0f;
-        }
-
-        // BELOW IS END OF ROUND/POINT SCORING SHTUFF
-        // left side of screen
-        // fix this
-        if(getPosition().x - getWidth() / 2 + moveByX <= 0)
-        {
-            _angle = 360.0f - _angle;
-            moveByX = -moveByX;
+            _velocity += 25.0f;
         }
 
         // right (player) side of screen, include point scoring for opponent
-        if(getPosition().x + getWidth() / 2 + moveByX >= Game::SCREEN_WIDTH)
+        if(getPosition().y + getHeight() / 2 + moveByY >= Game::SCREEN_HEIGHT)
         {
             getSprite().setPosition(Game::SCREEN_WIDTH / 2, Game::SCREEN_HEIGHT / 2);
             _angle = (rand() % 360) + 1;
             _velocity = 230.0f;
             _elapsedTimeSinceStart = 0.0f;
         }
-
         getSprite().move(moveByX, moveByY);
     }
 }
