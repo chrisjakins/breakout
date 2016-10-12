@@ -2,6 +2,8 @@
 #include "mainmenu.h"
 #include "gameobjectmanager.h"
 #include "gameball.h"
+#include "brickarray.h"
+#include "brick.h"
 
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
@@ -11,7 +13,7 @@ void Game::start()
     if(_gameState != Uninit)
         return;
 
-    _window.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "pong");
+    _window.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "breakout");
 
     PlayerPaddle *player1 = new PlayerPaddle();
     player1->setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50);
@@ -21,6 +23,17 @@ void Game::start()
 
     _gameObjectManager.add("Paddle1", player1);
     _gameObjectManager.add("Ball", ball);
+
+    int rows = 5, columns = 5;
+    for (int r = 0; r < rows; r++)
+    {
+        for(int c = 0; c < columns; c++)
+        {
+            Brick *brick = new Brick();
+            brick->setPosition(0 + 100 * c, 0 + 100 * r);
+            _gameObjectManager.add("Brick", brick);
+        }
+    }
     _gameState = Game::ShowingMenu;
 
     while(!isExiting())

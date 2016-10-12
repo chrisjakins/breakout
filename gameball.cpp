@@ -78,17 +78,17 @@ void GameBall::update(float elapsedTime)
             // so the ball constantly increases speed
             _velocity += 25.0f;
         }
-
-        // right (player) side of screen, include point scoring for opponent
-        if(getPosition().y + getHeight() / 2 + moveByY >= Game::SCREEN_HEIGHT)
-        {
-            getSprite().setPosition(Game::SCREEN_WIDTH / 2, Game::SCREEN_HEIGHT / 2);
-            _angle = (rand() % 360) + 1;
-            _velocity = 230.0f;
-            _elapsedTimeSinceStart = 0.0f;
-        }
-        getSprite().move(moveByX, moveByY);
     }
+
+    // bottom (player) side of screen, include point scoring for opponent
+    if(getPosition().y + getHeight() / 2 + moveByY >= Game::SCREEN_HEIGHT)
+    {
+        getSprite().setPosition(Game::SCREEN_WIDTH / 2, Game::SCREEN_HEIGHT / 2);
+        _angle = (rand() % 360) + 1;
+        _velocity = 230.0f;
+        _elapsedTimeSinceStart = 0.0f;
+    }
+    getSprite().move(moveByX, moveByY);
 }
 
 float GameBall::linearVelocityX(float angle)

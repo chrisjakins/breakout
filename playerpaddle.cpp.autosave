@@ -13,12 +13,7 @@ PlayerPaddle::PlayerPaddle()
 PlayerPaddle::~PlayerPaddle()
 {
 }
-/*
-void PlayerPaddle::draw(sf::RenderWindow &window)
-{
-    VisibleGameObject::draw(window);
-}
-*/
+
 float PlayerPaddle::getVelocity() const
 {
     return _velocity;

@@ -16,7 +16,9 @@ SOURCES += main.cpp \
     playerpaddle.cpp \
     gameobjectmanager.cpp \
     gameball.cpp \
-    aipaddle.cpp
+    aipaddle.cpp \
+    brick.cpp \
+    brickarray.cpp
 
 HEADERS += \
     game.h \
@@ -25,4 +27,6 @@ HEADERS += \
     playerpaddle.h \
     gameobjectmanager.h \
     gameball.h \
-    aipaddle.h
+    aipaddle.h \
+    brick.h \
+    brickarray.h
