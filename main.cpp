@@ -16,7 +16,11 @@ int main()
 
 // paddle                       DONE
 // game ball interactions       DONE (other than sides of paddle)
+// bricks
 // brick data structure
     // deconstructor
     // brickArray and brick
     // working on array         DONEs
+
+// figure out why brickarray is not drawing  SOLVED
+// fix type making different bricks

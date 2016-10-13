@@ -1,11 +1,23 @@
 #include "brickarray.h"
+#include "brick.h"
+#include "game.h"
+
+#include <vector>
 
 BrickArray::BrickArray()
 {
-    brickArray = new Brick*[rows];
-    for(int r = 0; r < rows; r++)
+    for(int r = top; r < top + rows * Brick::height; r += Brick::height)
     {
-        brickArray[r] = new Brick[columns];
+        for(int c = 0; c < Game::SCREEN_WIDTH; c += Brick::width)
+        {
+            switch(r % 100)
+            {
+                case ()
+            }
+
+            Brick* brick = new Brick(c, r, 1);
+            brickLayout.push_back(brick);
+        }
     }
 }
 
@@ -16,11 +28,14 @@ BrickArray::~BrickArray()
 
 void BrickArray::update(float elapsedTime)
 {
-    for(int r = 0; r < rows; r++)
-    {
-        for(int c = 0; c < columns; c++)
-        {
+}
 
-        }
+void BrickArray::draw(sf::RenderWindow& window)
+{
+    std::vector<Brick*>::iterator itr = brickLayout.begin();
+    while(itr != brickLayout.end())
+    {
+        (*itr)->draw(window);
+        itr++;
     }
 }

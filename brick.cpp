@@ -2,10 +2,15 @@
 
 #include <cassert>
 
-Brick::Brick()
+Brick::Brick(int x, int y, int brickType)
+    : state(true)
 {
+    xPos = x;
+    yPos = y;
+    type = brickType;
     load("images/brick2.png");
     assert(isLoaded());
+    setPosition(xPos, yPos);
 }
 
 Brick::~Brick()
@@ -17,7 +22,10 @@ void Brick::update(float elapsedTime)
 
 }
 
-void Brick::draw(sf::RenderWindow &window)
+void Brick::draw(sf::RenderWindow& window)
 {
-    VisibleGameObject::draw(window);
+    if(state)
+    {
+        VisibleGameObject::draw(window);
+    }
 }

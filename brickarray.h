@@ -2,20 +2,24 @@
 #define BRICKARRAY_H
 
 #include "brick.h"
+#include "visiblegameobject.h"
 
-class BrickArray
+#include <vector>
+
+class BrickArray : public VisibleGameObject
 {
 public:
     BrickArray();
     ~BrickArray();
 
     void update(float elapsedTime);
+    void draw(sf::RenderWindow& window);
 
 private:
-    const static int columns = 5;
-    const static int rows = 5;
+    const static int rows = 4;
+    const static int top = 200;
 
-    Brick** brickArray;
+    std::vector<Brick*> brickLayout;
 };
 
 #endif // BRICKARRAY_H

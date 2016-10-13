@@ -4,6 +4,7 @@
 #include "gameball.h"
 #include "brickarray.h"
 #include "brick.h"
+#include "visiblegameobject.h"
 
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
@@ -21,19 +22,12 @@ void Game::start()
     GameBall *ball = new GameBall();
     ball->setPosition((SCREEN_WIDTH/2),(SCREEN_HEIGHT/2)-15);
 
+    VisibleGameObject *bricks = new BrickArray();
+
     _gameObjectManager.add("Paddle1", player1);
     _gameObjectManager.add("Ball", ball);
+    _gameObjectManager.add("BrickLayout", bricks);
 
-    int rows = 5, columns = 5;
-    for (int r = 0; r < rows; r++)
-    {
-        for(int c = 0; c < columns; c++)
-        {
-            Brick *brick = new Brick();
-            brick->setPosition(0 + 100 * c, 0 + 100 * r);
-            _gameObjectManager.add("Brick", brick);
-        }
-    }
     _gameState = Game::ShowingMenu;
 
     while(!isExiting())
